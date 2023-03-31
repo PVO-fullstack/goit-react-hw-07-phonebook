@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Label, Form, Input, Button } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { fetchContacts } from 'redux/operations';
+import { addContact } from 'redux/operations';
+import { getContacts } from 'redux/selectors';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(getContacts);
   const contactsName = contacts.map(contact => contact.name);
 
   const handleSubmit = e => {
@@ -22,7 +24,7 @@ export const ContactForm = () => {
       return;
     }
     dispatch(
-      addContact({ id: nanoid(), name: name.value, number: number.value })
+      addContact({ id: nanoid(), name: name.value, phone: number.value })
     );
     name.value = '';
     number.value = '';

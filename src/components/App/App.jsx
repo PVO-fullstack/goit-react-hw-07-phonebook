@@ -3,28 +3,25 @@ import { ContactForm } from '../ContactForm/ContactForm';
 import { Filter } from '../Filter/Filter';
 import { ContactList } from '../ContactList/ContactList';
 import { ContactItem } from '../ContactItem/ContactItem';
-import { Header, Title } from './App.styled';
+import { Conteiner, Header, Title } from './App.styled';
+import { getContacts } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 
 export const App = () => {
+  const contacts = useSelector(getContacts);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      <Header>Phonebook</Header>
-      <ContactForm />
-      <Title>Contacts</Title>
-      <Filter />
-      <ContactList>
-        <ContactItem />
-      </ContactList>
-    </div>
+    <Conteiner>
+      <div>
+        <Header>Phonebook</Header>
+        <ContactForm />
+      </div>
+      <div>
+        {contacts.length > 0 && <Filter /> && <Title>Contacts</Title>}
+        <ContactList>
+          <ContactItem />
+        </ContactList>
+      </div>
+    </Conteiner>
   );
 };

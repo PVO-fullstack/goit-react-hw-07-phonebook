@@ -4,12 +4,13 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  color: blueviolet;
+  color: #d6d2d9;
 `;
 
 export const Form = styled.form`
   padding: 10px;
   border: 2px solid pink;
+  width: 350px;
 `;
 
 export const Input = styled.input`
@@ -29,4 +30,5 @@ export const Button = styled.button`
   background-color: #47ccff;
   margin-left: auto;
   margin-right: auto;
+  padding: 10px;
 `;
