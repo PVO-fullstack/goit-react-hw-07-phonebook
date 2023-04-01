@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Header = styled.h1`
   font-size: 30px;
-  color: red;
+  color: #6df5aa;
   margin: 0;
   margin-top: 30px;
   margin-bottom: 20px;

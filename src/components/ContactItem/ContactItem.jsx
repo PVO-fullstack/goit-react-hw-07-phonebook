@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getContacts, getFilter } from 'redux/selectors';
+import { selectContacts, selectFilter } from 'redux/selectors';
 import { Button, Li, Span } from './ContactItem.styled';
 import { deleteContact } from 'redux/operations';
 
 export const ContactItem = () => {
-  const contactList = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const contactList = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const normalaizeFilter = filter.toLowerCase();
