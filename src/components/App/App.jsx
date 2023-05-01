@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 export const App = () => {
   const contacts = useSelector(selectContacts);
+  const isContacts = contacts.length > 0;
 
   return (
     <Conteiner>
@@ -16,7 +17,8 @@ export const App = () => {
         <ContactForm />
       </div>
       <div>
-        {contacts.length > 0 && <Filter /> && <Title>Contacts</Title>}
+        {isContacts ? <Filter /> : ''}
+        {isContacts ? <Title>Contacts</Title> : ''}
         <ContactList />
       </div>
     </Conteiner>
