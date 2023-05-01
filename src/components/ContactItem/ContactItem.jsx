@@ -1,28 +1,23 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { selectContacts, selectFilter } from 'redux/selectors';
-import { Button, Li, Span } from './ContactItem.styled';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { Button, Span } from './ContactItem.styled';
 import { deleteContact } from 'redux/operations';
 
-export const ContactItem = () => {
-  const contactList = useSelector(selectContacts);
-  const filter = useSelector(selectFilter);
+export const ContactItem = ({ id, name, phone }) => {
   const dispatch = useDispatch();
 
-  const normalaizeFilter = filter.toLowerCase();
-
-  const visibleContacts = contactList.filter(contact =>
-    contact.name.toLowerCase().includes(normalaizeFilter)
+  return (
+    <>
+      <Span>{name}: </Span>
+      <Span>{phone}</Span>
+      <Button onClick={() => dispatch(deleteContact(id))}>Delete</Button>
+    </>
   );
+};
 
-  return visibleContacts.map(contact => (
-    <Li key={contact.id}>
-      <Span>{contact.name}: </Span>
-      <Span>{contact.phone}</Span>
-      <Button onClick={() => dispatch(deleteContact(contact.id))}>
-        Delete
-      </Button>
-    </Li>
-  ));
+ContactItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
 };
